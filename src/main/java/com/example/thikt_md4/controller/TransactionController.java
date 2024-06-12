@@ -51,7 +51,7 @@ public class TransactionController {
         return "addTransaction"; // Chuyển hướng người dùng đến trang danh sách giao dịch sau khi thêm giao dịch thành công
     }
 
-    @DeleteMapping("/{id}")
+    @PostMapping("/{id}")
     public String deleteTransaction(@PathVariable Long id) {
         transactionService.deleteTransaction(id);
         return "redirect:/transaction"; // Chuyển hướng người dùng đến trang danh sách giao dịch sau khi xóa giao dịch thành công
