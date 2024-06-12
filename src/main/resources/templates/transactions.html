@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction List</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+</head>
+<body>
+<h1>Transaction List</h1>
+
+<!-- Form tìm kiếm -->
+<form action="#" method="GET">
+    <label for="searchName">Tên khách hàng:</label>
+    <input type="text" id="searchName" name="searchName" placeholder="Nhập tên khách hàng...">
+    <label for="searchServiceType">Loại dịch vụ:</label>
+    <select id="searchServiceType" name="searchServiceType">
+        <option value="">Tất cả</option>
+        <option value="Đất">Đất</option>
+        <option value="Nhà và đất">Nhà và đất</option>
+    </select>
+    <button type="submit">Tìm kiếm</button>
+</form>
+
+<!-- Bảng hiển thị danh sách giao dịch -->
+<table border="1">
+    <thead>
+    <tr>
+        <th>Mã giao dịch</th>
+        <th>Tên khách hàng</th>
+        <th>Loại dịch vụ</th>
+        <th>Ngày giao dịch</th>
+        <th>Đơn giá (VND/m2)</th>
+        <th>Diện tích (m2)</th>
+        <th>Chức năng</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Vòng lặp để hiển thị danh sách giao dịch -->
+    <tr th:each="transaction : ${transactions}">
+        <td th:text="${transaction.transactionId}"></td>
+        <td th:text="${transaction.customer.name}"></td>
+        <td th:text="${transaction.serviceType}"></td>
+<!--        <td th:text="${#dates.format(transaction.transactionDate, 'dd/MM/yyyy')}"></td>-->
+        <td th:text="${transaction.transactionDate}"></td>
+        <td th:text="${transaction.unitPrice}"></td>
+        <td th:text="${transaction.area}"></td>
+        <td>
+            <a th:href="@{/transaction/{id}(id=${transaction.id})}">Chi tiết</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Nút thêm mới giao dịch -->
+<a href="/transaction/new">Thêm mới giao dịch</a>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Detail</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+
+</head>
+<body>
+<h1>Transaction Detail</h1>
+
+<p>Mã giao dịch: <span th:text="${transaction.transactionId}"></span></p>
+<p>Tên khách hàng: <span th:text="${transaction.customer.name}"></span></p>
+<p>Loại dịch vụ: <span th:text="${transaction.serviceType}"></span></p>
+<p>Ngày giao dịch: <span th:text="${transaction.transactionDate}"></span></p>
+<p>Đơn giá: <span th:text="${transaction.unitPrice}"></span> VND/m2</p>
+<p>Diện tích: <span th:text="${transaction.area}"></span> m2</p>
+
+<form th:action="@{/transaction/{id}(id=${transaction.id})}" method="POST">
+    <input type="hidden" name="_method" value="DELETE"/>
+    <button type="submit">Xóa giao dịch</button>
+</form>
+
+<a th:href="@{/transaction}">Quay lại</a>
+</body>
+</html>
